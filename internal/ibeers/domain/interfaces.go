@@ -4,6 +4,8 @@ type Reader interface {
 	GetAll() ([]*Beer, error)
 	Get(ID int64) (*Beer, error)
 	Search(b string) (*Beer, error)
+	GetBeerStyles(b string) ([]*BeerStyle, error)
+	GetBeerTypes(b string) ([]*BeerType, error)
 }
 
 type Writer interface {
