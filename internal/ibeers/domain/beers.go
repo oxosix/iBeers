@@ -1,18 +1,19 @@
+// domain/beer.go
 package domain
 
 type Beer struct {
-	ID    int64      `json:"id"`
-	Name  string     `json:"name"`
-	Type  *BeerType  `json:"type" db:"type"`
-	Style *BeerStyle `json:"style" db:"style"`
+	ID    int64  `json:"id"`
+	Name  string `json:"name"`
+	Type  string `json:"type"`
+	Style string `json:"style"`
 }
 
-type BeerType struct {
-	ID   int64  `json:"id"`
-	Name string `json:"name"`
+type Repository interface {
+	GetAll() ([]*Beer, error)
+	// Adicionar outros métodos de repositório conforme necessário
 }
 
-type BeerStyle struct {
-	ID   int64  `json:"id"`
-	Name string `json:"name"`
+type UseCase interface {
+	GetAllBeers() ([]*Beer, error)
+	// Adicionar outros métodos de caso de uso conforme necessário
 }

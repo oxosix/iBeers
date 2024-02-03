@@ -1,12 +1,9 @@
--- initial_data.sql
-
 -- Inserir valores iniciais para beer_type
 INSERT INTO beer_type (name) VALUES
     ('Ale'),
     ('Lager'),
     ('Malt'),
-    ('Stout')
-ON CONFLICT (name) DO NOTHING;
+    ('Stout');
 
 -- Inserir valores iniciais para beer_style
 INSERT INTO beer_style (name) VALUES
@@ -24,5 +21,4 @@ INSERT INTO beer_style (name) VALUES
     ('Pilsner'),
     ('Golden'),
     ('Fruit'),
-    ('Honey')
-ON CONFLICT (name) DO NOTHING;
+    ('Honey');

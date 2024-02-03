@@ -1,6 +1,12 @@
 module github.com/d90ares/iBeers
 
-go 1.21.1
+go 1.21
+
+require (
+	github.com/gorilla/mux v1.8.1
+	github.com/jackc/pgx/v4 v4.18.1
+	github.com/prometheus/client_golang v1.18.0
+)
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
@@ -12,9 +18,7 @@ require (
 	github.com/jackc/pgproto3/v2 v2.3.2 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
 	github.com/jackc/pgtype v1.14.0 // indirect
-	github.com/jackc/pgx/v4 v4.18.1 // indirect
 	github.com/matttproud/golang_protobuf_extensions/v2 v2.0.0 // indirect
-	github.com/prometheus/client_golang v1.18.0 // indirect
 	github.com/prometheus/client_model v0.5.0 // indirect
 	github.com/prometheus/common v0.45.0 // indirect
 	github.com/prometheus/procfs v0.12.0 // indirect
