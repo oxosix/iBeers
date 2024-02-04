@@ -5,15 +5,16 @@ import (
 	"fmt"
 
 	"github.com/d90ares/iBeers/internal/ibeers/domain"
+	"github.com/d90ares/iBeers/internal/ibeers/service"
 )
 
 type BeerUseCase struct {
-	repository domain.Repository
+	service *service.BeerService
 }
 
-func NewBeerUseCase(repository domain.Repository) *BeerUseCase {
+func NewBeerUseCase(service *service.BeerService) *BeerUseCase {
 	return &BeerUseCase{
-		repository: repository,
+		service: service,
 	}
 }
 

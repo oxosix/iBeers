@@ -5,13 +5,14 @@ import (
 	"context"
 
 	"github.com/d90ares/iBeers/internal/ibeers/domain"
+	"github.com/d90ares/iBeers/internal/ibeers/repository"
 )
 
 type BeerService struct {
-	repository domain.Repository
+	repository *repository.BeerRepository
 }
 
-func NewBeerService(repository domain.Repository) *BeerService {
+func NewBeerService(repository *repository.BeerRepository) *BeerService {
 	return &BeerService{
 		repository: repository,
 	}
