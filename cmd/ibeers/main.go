@@ -8,7 +8,9 @@ import (
 	"net/http"
 
 	"github.com/d90ares/iBeers/internal/ibeers/http/handler"
+	"github.com/d90ares/iBeers/internal/ibeers/http/router"
 	"github.com/d90ares/iBeers/internal/ibeers/repository"
+	"github.com/d90ares/iBeers/internal/ibeers/service"
 	"github.com/d90ares/iBeers/internal/ibeers/usecase"
 	"github.com/gorilla/mux"
 	_ "github.com/jackc/pgx/v4/stdlib"
@@ -24,15 +26,20 @@ func main() {
 	}
 	defer db.Close()
 
+	if err := db.Ping(); err != nil {
+		log.Fatal("Erro ao conectar ao banco de dados:", err)
+	}
+
 	beerRepository := repository.NewBeerRepository(db)
-	beerUseCase := usecase.NewBeerUseCase(beerRepository)
+	beerService := service.NewBeerService(beerRepository)
+	beerUseCase := usecase.NewBeerUseCase(beerService)
 	beerHandler := handler.NewBeerHandler(beerUseCase)
 
-	router := mux.NewRouter()
-	router.HandleFunc("/beers", beerHandler.GetAllBeers).Methods("GET")
+	r := mux.NewRouter()
+	router.SetupRoutes(r, beerHandler)
 
 	// Start the server
 	fmt.Println("Servidor rodando em http://localhost:8080")
-	http.Handle("/", router)
+	http.Handle("/", r)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
