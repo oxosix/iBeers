@@ -7,7 +7,9 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/codegangsta/negroni"
 	"github.com/d90ares/iBeers/internal/ibeers/http/handler"
+	"github.com/d90ares/iBeers/internal/ibeers/http/middleware"
 	"github.com/d90ares/iBeers/internal/ibeers/http/router"
 	"github.com/d90ares/iBeers/internal/ibeers/repository"
 	"github.com/d90ares/iBeers/internal/ibeers/service"
@@ -26,20 +28,31 @@ func main() {
 	}
 	defer db.Close()
 
-	if err := db.Ping(); err != nil {
-		log.Fatal("Erro ao conectar ao banco de dados:", err)
-	}
+	// if err := db.Ping(); err != nil {
+	// 	log.Fatal("Erro ao conectar ao banco de dados:", err)
+	// }
 
 	beerRepository := repository.NewBeerRepository(db)
 	beerService := service.NewBeerService(beerRepository)
 	beerUseCase := usecase.NewBeerUseCase(beerService)
 	beerHandler := handler.NewBeerHandler(beerUseCase)
 
+	// Crie uma nova instância do Negroni
+	n := negroni.New()
+
+	// Adicione o middleware de recuperação (recovery)
+	n.Use(negroni.NewRecovery())
+
+	// Adicione o middleware personalizado para tratamento de erros
+	n.Use(middleware.NewMiddleware())
+
 	r := mux.NewRouter()
 	router.SetupRoutes(r, beerHandler)
+
+	n.UseHandler(r)
 
 	// Start the server
 	fmt.Println("Servidor rodando em http://localhost:8080")
 	http.Handle("/", r)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	n.Run(":8080")
 }

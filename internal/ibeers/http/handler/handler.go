@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/d90ares/iBeers/internal/ibeers/domain"
+	"github.com/d90ares/iBeers/internal/ibeers/errors"
 )
 
 type BeerHandler struct {
@@ -19,28 +20,50 @@ func NewBeerHandler(useCase domain.UseCase) *BeerHandler {
 }
 
 func (h *BeerHandler) GetAllBeers(w http.ResponseWriter, r *http.Request) {
-	beers, err := h.useCase.GetAllBeers()
+	ctx := r.Context()
+	beers, err := h.useCase.GetAllBeers(ctx)
 	if err != nil {
-		HandleHTTPError(w, err)
-		return
+		// Verifique se o erro implementa a interface HTTPError
+		if httpErr, ok := err.(errors.HttpError); ok {
+			errors.HandleError(w, httpErr)
+			return
+		}
+		if beers == nil {
+			// Se o erro não implementa a interface HTTPError, trate como um erro interno
+			genericErr := errors.NewHttpError(http.StatusCreated, "Erro interno do servidooooooooor")
+			errors.HandleError(w, genericErr)
+			return
+
+		}
 	}
 
+	// Se não houver erros, responda com JSON
 	respondWithJSON(w, http.StatusOK, beers)
 }
 
-// Função auxiliar para lidar com erros HTTP
-func HandleHTTPError(w http.ResponseWriter, err error) {
-	w.WriteHeader(http.StatusInternalServerError)
-	w.Header().Set("Content-Type", "application/json")
-	errorMessage := map[string]interface{}{"error": err.Error()}
-	json.NewEncoder(w).Encode(errorMessage)
-}
-
-// Função auxiliar para responder com JSON
 func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	json.NewEncoder(w).Encode(payload)
 }
+
+// Função auxiliar para lidar com erros HTTP
+// func HandleHTTPError(w http.ResponseWriter, err error) {
+// 	if e, ok := err.(errors.HTTPError); ok {
+// 		// Se o erro implementa a interface, utilize suas propriedades
+// 		respondWithError(w, e.StatusCode(), e.Error())
+// 	} else {
+// 		// Tratar outros tipos de erros
+// 		respondWithError(w, http.StatusInternalServerError, "Erro interno do servidor")
+// 	}
+// }
+
+// // Função auxiliar para responder com JSON
+// func respondWithError(w http.ResponseWriter, code int, message string) {
+// 	w.Header().Set("Content-Type", "application/json")
+// 	w.WriteHeader(code)
+// 	response := map[string]string{"error": message}
+// 	json.NewEncoder(w).Encode(response)
+// }
 
 // Implementar outros handlers, como GetBeerByID, SearchBeer, etc.

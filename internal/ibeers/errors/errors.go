@@ -5,55 +5,53 @@ import (
 	"net/http"
 )
 
-type GenericError struct {
-	Status int
-	Msg    string
+type HttpError struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+	error
 }
 
-func (e *GenericError) StatusCode() int {
-	return e.Status
-}
-
-func (e *GenericError) Error() string {
-	return e.Msg
-}
-
-func handleError(w http.ResponseWriter, err error) {
-	if e, ok := err.(*GenericError); ok {
-		switch e.Status {
-		case http.StatusOK:
-			respondWithError(w, http.StatusOK, "Sucesso") // Tratar código 200
-		case http.StatusCreated:
-			// Tratar código 201
-		case http.StatusNoContent:
-			// Tratar código 204
-		case http.StatusFound:
-			// Tratar código 302
-		case http.StatusBadRequest:
-			// Tratar código 400
-		case http.StatusUnauthorized:
-			// Tratar código 401
-		case http.StatusForbidden:
-			// Tratar código 403
-		case http.StatusNotFound:
-			// Tratar código 404
-		case http.StatusInternalServerError:
-			// Tratar código 500
-		default:
-			// Tratar outros códigos de status
-		}
-
-		// Aqui você pode realizar ações específicas com base no código de status
-		respondWithError(w, e.Status, e.Msg)
-	} else {
-		// Tratar outros tipos de erros
-		respondWithError(w, http.StatusInternalServerError, "Erro interno do servidor")
+func HandleError(w http.ResponseWriter, err HttpError) {
+	switch err.Code {
+	case http.StatusOK:
+		RespondWithError(w, http.StatusOK, err.Message, true) // Tratar código 200
+	case http.StatusCreated:
+		RespondWithError(w, http.StatusCreated, "bingo", true) // Tratar código 201
+	case http.StatusNoContent:
+		RespondWithError(w, http.StatusNoContent, err.Message, true) // Tratar código 204
+	case http.StatusFound:
+		RespondWithError(w, http.StatusFound, err.Message, true) // Tratar código 302
+	case http.StatusBadRequest:
+		RespondWithError(w, http.StatusBadRequest, err.Message, true) // Tratar código 400
+	case http.StatusUnauthorized:
+		RespondWithError(w, http.StatusUnauthorized, err.Message, true) // Tratar código 401
+	case http.StatusForbidden:
+		RespondWithError(w, http.StatusForbidden, err.Message, true) // Tratar código 403
+	case http.StatusNotFound:
+		RespondWithError(w, http.StatusNotFound, err.Message, true) // Tratar código 404
+	default:
+		RespondWithError(w, http.StatusInternalServerError, err.Message, false) // Tratar código 500
 	}
+	// Aqui você pode realizar ações específicas com base no código de status
+	// RespondWithError(w, e.Status, e.Msg, true)
+
 }
 
-func respondWithError(w http.ResponseWriter, statusCode int, message string) {
+func RespondWithError(w http.ResponseWriter, statusCode int, message string, IncludeStatus bool) {
 	w.WriteHeader(statusCode)
 	w.Header().Set("Content-Type", "application/json")
-	response := map[string]string{"error": message}
-	json.NewEncoder(w).Encode(response)
+	var Response map[string]interface{}
+	if IncludeStatus {
+		Response = map[string]interface{}{"error": message, "status": statusCode}
+	} else {
+		Response = map[string]interface{}{"error": message}
+	}
+	json.NewEncoder(w).Encode(Response)
+}
+
+func NewHttpError(statusCode int, message string) HttpError {
+	return HttpError{
+		Code:    statusCode,
+		Message: message,
+	}
 }
