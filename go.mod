@@ -13,6 +13,8 @@ require (
 	github.com/go-delve/gore v0.11.6 // indirect
 	github.com/hashicorp/golang-lru v1.0.2 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
+	go.uber.org/multierr v1.11.0 // indirect
+	go.uber.org/zap v1.26.0 // indirect
 	golang.org/x/arch v0.6.0 // indirect
 	golang.org/x/exp v0.0.0-20230224173230-c95f2b4c22f2 // indirect
 	golang.org/x/mod v0.14.0 // indirect

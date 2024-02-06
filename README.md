@@ -6,6 +6,8 @@
   
 Ele é baseado no modelo de Clean Architecture e busca utilizar as melhores práticas adotadas pela comunidade.
 
+Conceitos de Engenharia de software também serão empregados.
+
 As entregas ou (deliverys) serão feitas através de HTTP e HTML.
 
 Sendo os endpoints http:

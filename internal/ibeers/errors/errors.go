@@ -16,7 +16,7 @@ func HandleError(w http.ResponseWriter, err HttpError) {
 	case http.StatusOK:
 		RespondWithError(w, http.StatusOK, err.Message, true) // Tratar código 200
 	case http.StatusCreated:
-		RespondWithError(w, http.StatusCreated, "bingo", true) // Tratar código 201
+		RespondWithError(w, http.StatusCreated, err.Message, true) // Tratar código 201
 	case http.StatusNoContent:
 		RespondWithError(w, http.StatusNoContent, err.Message, true) // Tratar código 204
 	case http.StatusFound:
@@ -30,7 +30,7 @@ func HandleError(w http.ResponseWriter, err HttpError) {
 	case http.StatusNotFound:
 		RespondWithError(w, http.StatusNotFound, err.Message, true) // Tratar código 404
 	default:
-		RespondWithError(w, http.StatusInternalServerError, err.Message, false) // Tratar código 500
+		RespondWithError(w, http.StatusInternalServerError, err.Message, true) // Tratar código 500
 	}
 	// Aqui você pode realizar ações específicas com base no código de status
 	// RespondWithError(w, e.Status, e.Msg, true)

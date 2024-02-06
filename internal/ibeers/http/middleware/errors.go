@@ -3,7 +3,9 @@ package middleware
 import (
 	"net/http"
 
+	"github.com/d90ares/iBeers/config/logs"
 	"github.com/d90ares/iBeers/internal/ibeers/errors"
+	"go.uber.org/zap"
 )
 
 // MiddlewareHandler é o middleware personalizado para tratamento de erros
@@ -11,6 +13,8 @@ type MiddlewareHandler struct{}
 
 // ServeHTTP implementa a interface http.Handler
 func (m *MiddlewareHandler) ServeHTTP(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+	logs.Info("Request Started", zap.String("method", r.Method), zap.String("path", r.URL.Path))
+
 	// Tente executar a próxima função
 	next(w, r)
 

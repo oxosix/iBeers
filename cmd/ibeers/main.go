@@ -3,11 +3,11 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/codegangsta/negroni"
+	"github.com/d90ares/iBeers/config/logs"
 	"github.com/d90ares/iBeers/internal/ibeers/http/handler"
 	"github.com/d90ares/iBeers/internal/ibeers/http/middleware"
 	"github.com/d90ares/iBeers/internal/ibeers/http/router"
@@ -21,15 +21,18 @@ import (
 const dbURL = "host=localhost port=5432 user=postgres dbname=ibeers sslmode=disable"
 
 func main() {
+
 	// Abrir conexão com o banco de dados PostgreSQL
+
+	logs.Info("About to Start Application")
 	db, err := sql.Open("pgx", dbURL)
 	if err != nil {
-		log.Fatal("Erro ao abrir a conexão com o banco de dados:", err)
+		log.Fatal("Error opening connections to database: ", err)
 	}
 	defer db.Close()
 
 	// if err := db.Ping(); err != nil {
-	// 	log.Fatal("Erro ao conectar ao banco de dados:", err)
+	// 	log.Fatal("Error connecting to database: ", err)
 	// }
 
 	beerRepository := repository.NewBeerRepository(db)
@@ -39,7 +42,6 @@ func main() {
 
 	// Crie uma nova instância do Negroni
 	n := negroni.New()
-
 	// Adicione o middleware de recuperação (recovery)
 	n.Use(negroni.NewRecovery())
 
@@ -52,7 +54,7 @@ func main() {
 	n.UseHandler(r)
 
 	// Start the server
-	fmt.Println("Servidor rodando em http://localhost:8080")
+	logs.Info("Running in http://localhost:8080")
 	http.Handle("/", r)
-	n.Run(":8080")
+	http.ListenAndServe(":8080", n)
 }

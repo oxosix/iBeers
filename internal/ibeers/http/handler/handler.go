@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/d90ares/iBeers/config/logs"
 	"github.com/d90ares/iBeers/internal/ibeers/domain"
 	"github.com/d90ares/iBeers/internal/ibeers/errors"
 )
@@ -29,8 +30,9 @@ func (h *BeerHandler) GetAllBeers(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		if beers == nil {
+			logs.Error("Não foram encontrados valores", err)
 			// Se o erro não implementa a interface HTTPError, trate como um erro interno
-			genericErr := errors.NewHttpError(http.StatusCreated, "Erro interno do servidooooooooor")
+			genericErr := errors.NewHttpError(http.StatusInternalServerError, "Erro interno do servidooooooooor")
 			errors.HandleError(w, genericErr)
 			return
 
