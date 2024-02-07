@@ -8,12 +8,12 @@ import (
 
 	"github.com/codegangsta/negroni"
 	"github.com/d90ares/iBeers/config/logs"
-	"github.com/d90ares/iBeers/ibeers/http/handler"
-	"github.com/d90ares/iBeers/ibeers/http/middleware"
-	"github.com/d90ares/iBeers/ibeers/http/router"
-	"github.com/d90ares/iBeers/ibeers/repository"
-	"github.com/d90ares/iBeers/ibeers/service"
-	"github.com/d90ares/iBeers/ibeers/usecase"
+	"github.com/d90ares/iBeers/http/handler"
+	"github.com/d90ares/iBeers/http/middleware"
+	"github.com/d90ares/iBeers/http/router"
+	"github.com/d90ares/iBeers/repository"
+	"github.com/d90ares/iBeers/service"
+	"github.com/d90ares/iBeers/usecase"
 	"github.com/gorilla/mux"
 	_ "github.com/jackc/pgx/v4/stdlib"
 )
