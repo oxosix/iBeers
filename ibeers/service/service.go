@@ -4,8 +4,8 @@ package service
 import (
 	"context"
 
-	"github.com/d90ares/iBeers/internal/ibeers/domain"
-	"github.com/d90ares/iBeers/internal/ibeers/repository"
+	"github.com/d90ares/iBeers/ibeers/domain"
+	"github.com/d90ares/iBeers/ibeers/repository"
 )
 
 type BeerService struct {
