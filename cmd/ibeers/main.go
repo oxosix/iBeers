@@ -8,17 +8,17 @@ import (
 
 	"github.com/codegangsta/negroni"
 	"github.com/d90ares/iBeers/config/logs"
-	"github.com/d90ares/iBeers/internal/ibeers/http/handler"
-	"github.com/d90ares/iBeers/internal/ibeers/http/middleware"
-	"github.com/d90ares/iBeers/internal/ibeers/http/router"
-	"github.com/d90ares/iBeers/internal/ibeers/repository"
-	"github.com/d90ares/iBeers/internal/ibeers/service"
-	"github.com/d90ares/iBeers/internal/ibeers/usecase"
+	"github.com/d90ares/iBeers/ibeers/http/handler"
+	"github.com/d90ares/iBeers/ibeers/http/middleware"
+	"github.com/d90ares/iBeers/ibeers/http/router"
+	"github.com/d90ares/iBeers/ibeers/repository"
+	"github.com/d90ares/iBeers/ibeers/service"
+	"github.com/d90ares/iBeers/ibeers/usecase"
 	"github.com/gorilla/mux"
 	_ "github.com/jackc/pgx/v4/stdlib"
 )
 
-const dbURL = "host=localhost port=5432 user=postgres dbname=ibeers sslmode=disable"
+const dbURL = "host=localhost port=5432 user=beers_user password=beers123456 dbname=beers sslmode=disable"
 
 func main() {
 
@@ -31,9 +31,9 @@ func main() {
 	}
 	defer db.Close()
 
-	// if err := db.Ping(); err != nil {
-	// 	log.Fatal("Error connecting to database: ", err)
-	// }
+	if err := db.Ping(); err != nil {
+		log.Fatal("Error connecting to database: ", err)
+	}
 
 	beerRepository := repository.NewBeerRepository(db)
 	beerService := service.NewBeerService(beerRepository)

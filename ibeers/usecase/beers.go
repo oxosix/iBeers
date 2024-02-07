@@ -4,8 +4,8 @@ package usecase
 import (
 	"context"
 
-	"github.com/d90ares/iBeers/internal/ibeers/domain"
-	"github.com/d90ares/iBeers/internal/ibeers/service"
+	"github.com/d90ares/iBeers/ibeers/domain"
+	"github.com/d90ares/iBeers/ibeers/service"
 )
 
 type BeerUseCase struct {
