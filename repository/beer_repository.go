@@ -6,7 +6,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/d90ares/iBeers/ibeers/domain"
+	"github.com/d90ares/iBeers/domain"
 )
 
 type BeerRepository struct {

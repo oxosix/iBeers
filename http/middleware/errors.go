@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/d90ares/iBeers/config/logs"
-	"github.com/d90ares/iBeers/ibeers/errors"
+	"github.com/d90ares/iBeers/errors"
 	"go.uber.org/zap"
 )
 

@@ -2,7 +2,7 @@
 package router
 
 import (
-	"github.com/d90ares/iBeers/ibeers/http/handler"
+	"github.com/d90ares/iBeers/http/handler"
 	"github.com/gorilla/mux"
 )
 

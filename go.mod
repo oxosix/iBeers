@@ -1,31 +1,23 @@
 module github.com/d90ares/iBeers
 
-go 1.21
+go 1.20
 
 require (
 	github.com/gorilla/mux v1.8.1
 	github.com/jackc/pgx/v4 v4.18.1
 	github.com/prometheus/client_golang v1.18.0
+	go.uber.org/zap v1.26.0
 )
 
 require (
-	github.com/cilium/ebpf v0.11.0 // indirect
-	github.com/go-delve/gore v0.11.6 // indirect
-	github.com/hashicorp/golang-lru v1.0.2 // indirect
-	github.com/sirupsen/logrus v1.9.3 // indirect
+	github.com/stretchr/testify v1.8.4 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	go.uber.org/zap v1.26.0 // indirect
-	golang.org/x/arch v0.6.0 // indirect
-	golang.org/x/exp v0.0.0-20230224173230-c95f2b4c22f2 // indirect
-	golang.org/x/mod v0.14.0 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/codegangsta/negroni v1.0.0
-	github.com/go-delve/delve v1.22.0
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.14.0 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
