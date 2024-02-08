@@ -28,4 +28,12 @@ func (uc *BeerUseCase) GetAllBeers(ctx context.Context) ([]*domain.Beer, error) 
 	return beers, nil
 }
 
+func (uc *BeerUseCase) AddBeer(ctx context.Context, beer *domain.Beer) (*domain.Beer, error) {
+	beer, err := uc.service.AddBeer(ctx, beer)
+	if err != nil {
+		return nil, err
+	}
+	return beer, nil
+}
+
 // Implementar outros métodos de caso de uso, como GetBeerByID, SearchBeer, StoreBeer, etc.

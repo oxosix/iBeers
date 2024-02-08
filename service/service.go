@@ -32,3 +32,10 @@ func (s *BeerService) GetAllBeers(ctx context.Context) ([]*domain.Beer, error) {
 }
 
 // Implementar outros métodos de serviço, como GetBeerByID, SearchBeer, StoreBeer, etc.
+func (s *BeerService) AddBeer(ctx context.Context, beer *domain.Beer) (*domain.Beer, error) {
+	beers, err := s.repository.Add(ctx, beer)
+	if err != nil {
+		return nil, err
+	}
+	return beers, nil
+}
