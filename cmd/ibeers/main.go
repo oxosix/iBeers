@@ -18,7 +18,9 @@ import (
 	_ "github.com/jackc/pgx/v4/stdlib"
 )
 
-const dbURL = "host=localhost port=5432 user=beers_user password=beers123456 dbname=beers sslmode=disable"
+const (
+	dbURL = "host=localhost port=5432 user=beers_user password=beers123456 dbname=beers sslmode=disable"
+)
 
 func main() {
 
@@ -33,6 +35,12 @@ func main() {
 
 	if err := db.Ping(); err != nil {
 		log.Fatal("Error connecting to database: ", err)
+	}
+
+	logs.Info("About to Start migrations")
+	if err := repository.RunMigrations(db); err != nil {
+		logs.Error("Error on migrations: ", err)
+		return
 	}
 
 	beerRepository := repository.NewBeerRepository(db)
