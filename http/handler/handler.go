@@ -3,7 +3,6 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	"github.com/d90ares/iBeers/config/logs"
@@ -42,35 +41,6 @@ func (h *BeerHandler) GetAllBeers(w http.ResponseWriter, r *http.Request) {
 
 	// Se não houver erros, responda com JSON
 	respondWithJSON(w, http.StatusOK, beers)
-}
-
-func (h *BeerHandler) AddBeer(w http.ResponseWriter, r *http.Request) {
-	// Decodifica o JSON da requisição para o objeto Beer
-	var beer *domain.Beer
-	if err := json.NewDecoder(r.Body).Decode(&beer); err != nil {
-		http.Error(w, "Erro ao decodificar o JSON da cerveja", http.StatusBadRequest)
-		return
-	}
-
-	// Adiciona a cerveja usando a camada de caso de uso
-	ctx := r.Context()
-	beer, err := h.useCase.AddBeer(ctx, beer) // Passando o contexto e o objeto de cerveja como argumentos
-	if err != nil {
-		// Trata o erro
-		if httpErr, ok := err.(errors.HttpError); ok {
-			errors.HandleError(w, httpErr)
-			return
-		}
-		// Se o erro não implementa a interface HTTPError, trate como um erro interno
-		logs.Error("Erro ao adicionar cerveja:", err)
-		genericErr := errors.NewHttpError(http.StatusInternalServerError, "Erro interno do servidor")
-		errors.HandleError(w, genericErr)
-		return
-	}
-
-	// Retorna uma resposta de sucesso
-	w.WriteHeader(http.StatusCreated)
-	fmt.Fprintf(w, "Cerveja adicionada com sucesso")
 }
 
 func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
