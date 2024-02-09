@@ -3,8 +3,10 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/codegangsta/negroni"
 	"github.com/d90ares/iBeers/config/logs"
@@ -24,8 +26,14 @@ const (
 
 func main() {
 
+	content, err := os.ReadFile("ascii.txt")
+	if err != nil {
+		log.Fatalf("Erro ao ler o arquivo: %v", err)
+	}
 	// Abrir conexão com o banco de dados PostgreSQL
-
+	asciiArt := fmt.Sprintf(`%s`, content)
+	// fmt.Println(asciiArt)
+	logs.Sugar().Info(asciiArt + "\n")
 	logs.Info("About to Start Application")
 	db, err := sql.Open("pgx", dbURL)
 	if err != nil {
@@ -40,6 +48,11 @@ func main() {
 	logs.Info("About to Start migrations")
 	if err := repository.RunMigrations(db); err != nil {
 		logs.Error("Error on migrations: ", err)
+		return
+	}
+
+	if err := repository.RunInitialData(db); err != nil {
+		logs.Error("Error on initial data: ", err)
 		return
 	}
 

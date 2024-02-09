@@ -19,7 +19,7 @@ func init() {
 	logConfig := zap.Config{
 		OutputPaths: []string{getOutputLogs()},
 		Level:       zap.NewAtomicLevelAt(getLogLevel()),
-		Encoding:    "json",
+		Encoding:    "console",
 		EncoderConfig: zapcore.EncoderConfig{
 			LevelKey:     "level",
 			TimeKey:      "time",
@@ -31,6 +31,14 @@ func init() {
 	}
 
 	log, _ = logConfig.Build()
+}
+
+func Sugar() *zap.SugaredLogger {
+	return log.Sugar()
+}
+
+func JSON(key string, value string) zap.Field {
+	return zap.String(key, value)
 }
 
 func Info(message string, tags ...zap.Field) {
