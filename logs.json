@@ -1,0 +1,138 @@
+{"level":"info","time":"2024-02-17T14:48:43.753-0300","message":"About to Start Application"}
+{"level":"info","time":"2024-02-17T14:48:43.763-0300","message":"Tables already exists"}
+{"level":"info","time":"2024-02-17T14:48:43.763-0300","message":"Initial data already exists"}
+{"level":"info","time":"2024-02-17T14:48:43.763-0300","message":"Listening on http://localhost:8080"}
+{"level":"info","time":"2024-02-17T14:49:02.487-0300","message":"Request Started","method":"GET","path":"/health"}
+{"level":"info","time":"2024-02-17T14:49:02.487-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T14:50:52.049-0300","message":"About to Start Application"}
+{"level":"info","time":"2024-02-17T14:50:52.057-0300","message":"Tables already exists"}
+{"level":"info","time":"2024-02-17T14:50:52.058-0300","message":"Initial data already exists"}
+{"level":"info","time":"2024-02-17T14:50:52.058-0300","message":"Listening on http://localhost:8080"}
+{"level":"info","time":"2024-02-17T14:52:24.628-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-17T14:52:24.629-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T14:52:26.280-0300","message":"Request Started","method":"GET","path":"/"}
+{"level":"info","time":"2024-02-17T14:52:26.281-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T14:52:40.387-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T14:52:40.390-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T14:52:40.390-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T14:54:41.818-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-17T14:54:41.818-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T14:54:43.265-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T14:54:43.266-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T14:54:43.266-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:00:43.824-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:00:43.825-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:00:43.825-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:02:18.316-0300","message":"Request Started","method":"GET","path":"/health"}
+{"level":"info","time":"2024-02-17T15:02:18.317-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:02:57.884-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:02:57.885-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:02:57.886-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:03:02.855-0300","message":"Request Started","method":"GET","path":"/health"}
+{"level":"info","time":"2024-02-17T15:03:02.855-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:03:03.704-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-17T15:03:03.705-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T15:03:07.824-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:03:07.825-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:03:07.825-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:03:11.207-0300","message":"Request Started","method":"GET","path":"/health"}
+{"level":"info","time":"2024-02-17T15:03:11.208-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:03:14.820-0300","message":"Request Started","method":"GET","path":"/metrics"}
+{"level":"info","time":"2024-02-17T15:03:14.823-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:06:26.845-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-17T15:06:26.845-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T15:06:27.396-0300","message":"Request Started","method":"GET","path":"/v1/metrics"}
+{"level":"info","time":"2024-02-17T15:06:27.396-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T15:08:57.194-0300","message":"Request Started","method":"GET","path":"/metrics"}
+{"level":"info","time":"2024-02-17T15:08:57.197-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:09:18.270-0300","message":"Request Started","method":"GET","path":"/metrics"}
+{"level":"info","time":"2024-02-17T15:09:18.273-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:16:04.703-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:16:04.704-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:16:04.704-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:22:49.651-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:22:49.653-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:22:49.653-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:22:49.675-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:22:49.676-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:22:49.676-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:23:21.792-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-17T15:23:21.792-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T15:23:24.130-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:23:24.132-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:23:24.132-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:23:34.322-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-17T15:23:34.322-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T15:23:49.376-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-17T15:23:49.376-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T15:23:50.708-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:23:50.709-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:23:50.709-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:24:00.135-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:24:00.136-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:24:00.136-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:28:06.270-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:28:06.271-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:28:06.271-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:32:50.269-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:32:50.270-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:32:50.270-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:33:43.879-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:33:43.881-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:33:43.881-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:33:45.890-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:33:45.891-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:33:45.891-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:33:47.544-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:33:47.546-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:33:47.546-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:33:48.846-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:33:48.847-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:33:48.847-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:33:50.872-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:33:50.873-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:33:50.873-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:33:56.467-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:33:56.469-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:33:56.469-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T15:56:22.573-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T15:56:22.574-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T15:56:22.574-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T17:42:47.360-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T17:42:47.362-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T17:42:47.362-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T19:16:44.125-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T19:16:44.127-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T19:16:44.127-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T19:17:04.640-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T19:17:04.641-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T19:17:04.641-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T19:36:16.981-0300","message":"Request Started","method":"GET","path":"/metrics"}
+{"level":"info","time":"2024-02-17T19:36:16.984-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-17T19:36:18.505-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-17T19:36:18.506-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T19:53:33.170-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-17T19:53:33.170-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-17T19:53:34.948-0300","message":"Request Started","method":"GET","path":"/v1/beers"}
+{"level":"info","time":"2024-02-17T19:53:34.950-0300","message":"Sucesso","returnedBeers":[{"id":2,"name":"spaten","type":{"id":1,"name":"Ale"},"style":{"id":1,"name":"Amber"}},{"id":3,"name":"baden","type":{"id":2,"name":"Lager"},"style":{"id":2,"name":"Blonde"}},{"id":4,"name":"skol","type":{"id":3,"name":"Malt"},"style":{"id":3,"name":"Brown"}}]}
+{"level":"info","time":"2024-02-17T19:53:34.950-0300","message":"Request Ended","Status":200}
+{"level":"info","time":"2024-02-20T16:28:22.811-0300","message":"Request Started","method":"GET","path":"/apple-touch-icon-120x120-precomposed.png"}
+{"level":"info","time":"2024-02-20T16:28:22.814-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-20T16:28:23.106-0300","message":"Request Started","method":"GET","path":"/apple-touch-icon-120x120.png"}
+{"level":"info","time":"2024-02-20T16:28:23.106-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-20T16:28:23.356-0300","message":"Request Started","method":"GET","path":"/apple-touch-icon-precomposed.png"}
+{"level":"info","time":"2024-02-20T16:28:23.356-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-20T16:28:23.429-0300","message":"Request Started","method":"GET","path":"/apple-touch-icon.png"}
+{"level":"info","time":"2024-02-20T16:28:23.429-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-20T16:28:23.673-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-20T16:28:23.673-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-20T16:28:23.925-0300","message":"Request Started","method":"GET","path":"/apple-touch-icon-120x120-precomposed.png"}
+{"level":"info","time":"2024-02-20T16:28:23.925-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-20T16:28:23.968-0300","message":"Request Started","method":"GET","path":"/apple-touch-icon-120x120.png"}
+{"level":"info","time":"2024-02-20T16:28:23.968-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-20T16:28:24.014-0300","message":"Request Started","method":"GET","path":"/apple-touch-icon-precomposed.png"}
+{"level":"info","time":"2024-02-20T16:28:24.014-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-20T16:28:24.059-0300","message":"Request Started","method":"GET","path":"/apple-touch-icon.png"}
+{"level":"info","time":"2024-02-20T16:28:24.059-0300","message":"Request Ended","Status":404}
+{"level":"info","time":"2024-02-20T16:28:24.105-0300","message":"Request Started","method":"GET","path":"/favicon.ico"}
+{"level":"info","time":"2024-02-20T16:28:24.105-0300","message":"Request Ended","Status":404}
