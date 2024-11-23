@@ -1,12 +1,21 @@
 -- Inserir valores iniciais para beer_type
-INSERT INTO beer_type (name) VALUES
+INSERT INTO beer_type (name)
+SELECT name
+FROM (VALUES 
     ('Ale'),
     ('Lager'),
     ('Malt'),
-    ('Stout');
+    ('Stout')
+) AS vt(name)
+WHERE NOT EXISTS (
+    SELECT 1 FROM beer_type WHERE name = vt.name
+);
+
 
 -- Inserir valores iniciais para beer_style
-INSERT INTO beer_style (name) VALUES
+INSERT INTO beer_style (name)
+SELECT name
+FROM (VALUES 
     ('Amber'),
     ('Blonde'),
     ('Brown'),
@@ -21,4 +30,8 @@ INSERT INTO beer_style (name) VALUES
     ('Pilsner'),
     ('Golden'),
     ('Fruit'),
-    ('Honey');
+    ('Honey')
+) AS vs(name)
+WHERE NOT EXISTS (
+    SELECT 1 FROM beer_style WHERE name = vs.name
+);

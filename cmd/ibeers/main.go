@@ -2,59 +2,63 @@
 package main
 
 import (
-	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/codegangsta/negroni"
-	"github.com/d90ares/iBeers/config/logs"
-	"github.com/d90ares/iBeers/http/handler"
-	"github.com/d90ares/iBeers/http/middleware"
-	"github.com/d90ares/iBeers/http/router"
-	"github.com/d90ares/iBeers/repository"
-	"github.com/d90ares/iBeers/service"
-	"github.com/d90ares/iBeers/usecase"
+	"github.com/d90ares/iBeers/api/handler"
+	"github.com/d90ares/iBeers/api/middleware"
+	"github.com/d90ares/iBeers/api/router"
+	"github.com/d90ares/iBeers/internal/app/infra/database"
+	"github.com/d90ares/iBeers/internal/app/repository"
+	"github.com/d90ares/iBeers/internal/app/service"
+	"github.com/d90ares/iBeers/internal/app/usecase"
+	"github.com/d90ares/iBeers/pkg/art"
+	"github.com/d90ares/iBeers/pkg/logs"
 	"github.com/gorilla/mux"
 	_ "github.com/jackc/pgx/v4/stdlib"
 )
 
-const dbURL = "host=localhost port=5432 user=beers_user password=beers123456 dbname=beers sslmode=disable"
-
 func main() {
+	// content, err := os.ReadFile("ascii.txt")
+	// if err != nil {
+	// 	log.Fatalf("Erro ao ler o arquivo: %v", err)
+	// }
 
-	// Abrir conexão com o banco de dados PostgreSQL
-
+	asciiArt := art.AsciiArt("OXOSIX")
+	fmt.Print(asciiArt)
 	logs.Info("About to Start Application")
-	db, err := sql.Open("pgx", dbURL)
+
+	db, err := database.NewPostgreSQLDB()
 	if err != nil {
-		log.Fatal("Error opening connections to database: ", err)
+		log.Fatalf("Erro ao abrir a conexão com o banco de dados: %v", err)
 	}
 	defer db.Close()
-
-	if err := db.Ping(); err != nil {
-		log.Fatal("Error connecting to database: ", err)
-	}
 
 	beerRepository := repository.NewBeerRepository(db)
 	beerService := service.NewBeerService(beerRepository)
 	beerUseCase := usecase.NewBeerUseCase(beerService)
 	beerHandler := handler.NewBeerHandler(beerUseCase)
 
-	// Crie uma nova instância do Negroni
 	n := negroni.New()
-	// Adicione o middleware de recuperação (recovery)
 	n.Use(negroni.NewRecovery())
-
-	// Adicione o middleware personalizado para tratamento de erros
 	n.Use(middleware.NewMiddleware())
 
 	r := mux.NewRouter()
 	router.SetupRoutes(r, beerHandler)
+	router.SetupMetricsRoutes(r) // Configuração das rotas de métricas
+	router.SetupHealthRoute(r, db)
+
+	staticDir := "./web"
+	fileServer := http.FileServer(http.Dir(staticDir))
+	r.PathPrefix("/").Handler(http.StripPrefix("/", fileServer))
 
 	n.UseHandler(r)
 
 	// Start the server
-	logs.Info("Running in http://localhost:8080")
+	logs.Info("Serving static files from ./web")
+	logs.Info("Listening on http://localhost:8080")
 	http.Handle("/", r)
 	http.ListenAndServe(":8080", n)
 }
