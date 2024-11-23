@@ -11,7 +11,7 @@ func AsciiArt(s string) (r string) {
 	ascii := figlet4go.NewAsciiRender()
 	options := figlet4go.NewRenderOptions()
 	options.FontColor = []figlet4go.Color{
-		figlet4go.ColorGreen,
+		figlet4go.ColorBlue,
 	}
 	text := s
 	renderedText, err := ascii.RenderOpts(text, options)

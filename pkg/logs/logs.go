@@ -130,9 +130,9 @@ func CustomColorLevelEncoder(level zapcore.Level, enc zapcore.PrimitiveArrayEnco
 	var color string
 	switch level {
 	case zapcore.DebugLevel:
-		color = "\033[34m" // Azul
-	case zapcore.InfoLevel:
 		color = "\033[32m" // Verde
+	case zapcore.InfoLevel:
+		color = "\033[34m" // Azul
 	case zapcore.WarnLevel:
 		color = "\033[33m" // Amarelo
 	case zapcore.ErrorLevel:
