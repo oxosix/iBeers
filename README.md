@@ -23,4 +23,4 @@ Sendo os endpoints http:
 - **client_golang/prometheus/promauto**
 - **client_golang/prometheus/promhttp**
 
-![]([https://github.com/oxosix/ibeers.gif](https://github.com/oxosix/iBeers/blob/master/utils/ibeers.gif))
+![](https://github.com/oxosix/iBeers/blob/master/utils/ibeers.gif)
