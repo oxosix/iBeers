@@ -7,7 +7,6 @@ import (
 
 	"github.com/d90ares/iBeers/internal/domain"
 	"github.com/d90ares/iBeers/pkg/logs"
-	"go.uber.org/zap"
 )
 
 type BeerRepository struct {
@@ -57,38 +56,48 @@ func (r *BeerRepository) GetAll(ctx context.Context) ([]*domain.Beer, error) {
 	}
 
 	// beersJSON, err := json.Marshal(beers)
-	if err != nil {
-		return nil, fmt.Errorf("erro ao converter slice para JSON: %v", err)
-	}
+	// if err != nil {
+	// 	return nil, fmt.Errorf("erro ao converter slice para JSON: %v", err)
+	// }
 
 	sugars := logs.Sugar()
-	beersField := zap.Any("returnedBeers", beers)
-	sugars.Console.Infow("Sucesso", beersField)
-	sugars.JSON.Infow("Sucesso", beersField)
+	// beersField := logs.LogWithField("returnedBeers", beers)
+	if beers != nil {
+		sugars.Console.Info("Sucesso: retornando lista de cervejas")
+		if logs.Jsonlogger != nil {
+			sugars.JSON.Info("Sucesso: retornando lista de cervejas")
+		}
+	}
 
 	return beers, nil
 }
 
-func (r *BeerRepository) GetByID(ctx context.Context, id int) (*domain.Beer, error) {
-	// Implementar lógica para obter uma cerveja pelo seu ID
+// repository/beer_repository.go
+func (r *BeerRepository) GetByID(ctx context.Context, id int64) (*domain.Beer, error) {
+	var beer domain.Beer
 
-	if err := r.DB.PingContext(ctx); err != nil {
-		logs.Error("erro ao conectar ao banco de dados: %w", err)
-		return nil, fmt.Errorf("erro ao conectar ao banco de dados: %w", err)
-	}
-
-	row := r.DB.QueryRowContext(ctx, "SELECT * FROM beer WHERE id = $1", id)
-
-	var b domain.Beer
-	if err := row.Scan(&b.ID, &b.Name, &b.Style, &b.Type); err != nil {
+	// Consulta ajustada para incluir os dados de type e style
+	query := `
+		SELECT b.id, b.name, bt.name, bs.name
+		FROM beer b
+		JOIN beer_type bt ON b.type_id = bt.id
+		JOIN beer_style bs ON b.style_id = bs.id
+		WHERE b.id = $1
+	`
+	err := r.DB.QueryRowContext(ctx, query, id).Scan(&beer.ID, &beer.Name, &beer.Type.Name, &beer.Style.Name)
+	if err != nil {
 		if err == sql.ErrNoRows {
-			return nil, fmt.Errorf("cerveja não encontrada")
+			// Se não encontrar a cerveja, retorna um erro específico
+			return nil, fmt.Errorf("cerveja com ID %d não encontrada", id)
 		}
-		return nil, fmt.Errorf("erro ao mapear dados: %w", err)
+		return nil, fmt.Errorf("erro ao buscar cerveja com ID %d: %w", id, err)
 	}
 
-	fmt.Println("Repository: Obter cerveja por ID")
-	return &b, nil
+	// Adiciona os IDs dos tipos e estilos
+	beer.Type.ID = id // Tipo já deve estar preenchido
+	beer.Style.ID = id
+
+	return &beer, nil
 }
 
 func (r *BeerRepository) Add(ctx context.Context, beer *domain.Beer) (*domain.Beer, error) {
@@ -104,7 +113,7 @@ func (r *BeerRepository) Add(ctx context.Context, beer *domain.Beer) (*domain.Be
 		return nil, fmt.Errorf("error getting typeID: %w", errs)
 	}
 
-	_, err := r.DB.ExecContext(ctx, "INSERT INTO beers (name, type_id, style_id) VALUES ($1, $2, $3)", beer.Name, typeID, styleID)
+	_, err := r.DB.ExecContext(ctx, "INSERT INTO beer (name, type_id, style_id) VALUES ($1, $2, $3)", beer.Name, typeID, styleID)
 	if err != nil {
 		return nil, err
 	}

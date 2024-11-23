@@ -1,3 +1,4 @@
+# Etapa 1: Build do Go
 ARG GO_VERSION=1.20
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION} AS build
 WORKDIR /src
@@ -15,7 +16,7 @@ RUN --mount=type=cache,target=/go/pkg/mod/ \
     --mount=type=bind,target=. \
     CGO_ENABLED=0 GOARCH=$TARGETARCH go build -o /bin/server ./cmd/ibeers/main.go
 
-# Use a imagem base do Golang
+# Etapa 2: Imagem Final
 FROM alpine:latest AS final
 
 RUN --mount=type=cache,target=/var/cache/apk \
@@ -24,7 +25,6 @@ RUN --mount=type=cache,target=/var/cache/apk \
         tzdata \
         && \
         update-ca-certificates
-
         
 ARG UID=10001
 RUN adduser \
@@ -41,25 +41,8 @@ USER appuser
 WORKDIR /app
 
 COPY --from=build /bin/server .
-COPY --from=build /src/ascii.txt .
-# Define o diretório de trabalho dentro do contêiner
-
-
-ARG DB_PASSWORD=beers123456
-ARG DB_PORT=5432
-ARG DB_USER=beers_user
-ARG DB_HOST=172.17.0.1
-
-ENV DB_PASSWORD=${DB_PASSWORD}
-ENV DB_PORT=${DB_PORT}
-ENV DB_USER=${DB_USER}
-ENV DB_HOST=${DB_HOST}
-
-# Copia o código fonte do aplicativo para o diretório de trabalho no contêiner
-
-# Compila o aplicativo
-# RUN go build -o app ./cmd/ibeers
-
+COPY --from=build /src/web ./web
+COPY --from=build /src/scripts ./scripts
 # Expõe a porta em que o aplicativo será executado
 EXPOSE 8080
 

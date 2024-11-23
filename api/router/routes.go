@@ -14,6 +14,7 @@ import (
 func SetupRoutes(router *mux.Router, beerHandler *handler.BeerHandler) {
 	router.HandleFunc("/v1/beers", beerHandler.GetAllBeers).Methods("GET", "OPTIONS")
 	router.HandleFunc("/v1/beers", beerHandler.Add).Methods("POST", "OPTIONS")
+	router.HandleFunc("/v1/beers/{id:[0-9]+}", beerHandler.GetByID).Methods("GET")
 	// Adicione outras rotas conforme necessário
 }
 

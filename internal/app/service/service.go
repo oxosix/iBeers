@@ -39,3 +39,11 @@ func (s *BeerService) AddBeer(ctx context.Context, beer *domain.Beer) (*domain.B
 	}
 	return beers, nil
 }
+
+func (s *BeerService) GetByID(ctx context.Context, beer int64) (*domain.Beer, error) {
+	beers, err := s.repository.GetByID(ctx, beer)
+	if err != nil {
+		return nil, err
+	}
+	return beers, nil
+}

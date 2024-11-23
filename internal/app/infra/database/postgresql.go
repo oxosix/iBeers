@@ -48,7 +48,7 @@ func RunMigrations(db *sql.DB) error {
 
 	cwd, _ := os.Getwd()
 	// Leia o conteúdo do arquivo de migração
-	migrationsPath := filepath.Join(cwd, "../../scripts", "migrations.sql")
+	migrationsPath := filepath.Join(cwd, "scripts", "migrations.sql")
 
 	exists, err := verifyTablesExist(db)
 
@@ -69,9 +69,9 @@ func RunMigrations(db *sql.DB) error {
 	// Execute as migrações
 	_, err = db.Exec(string(data))
 	if err != nil {
+		logs.Error("Erro ao executar migrações: ", err)
 		return fmt.Errorf("failed to execute migrations: %w", err)
 	}
-	logs.Error("Erro ao executar migrações migrações: ", err)
 	return nil
 }
 
@@ -79,7 +79,7 @@ func RunInitialData(db *sql.DB) error {
 
 	cwd, _ := os.Getwd()
 	// Leia o conteúdo do arquivo de migração
-	migrationsPath := filepath.Join(cwd, "../..", "scripts", "initial_data.sql")
+	migrationsPath := filepath.Join(cwd, "scripts", "initial_data.sql")
 
 	// Verificar se os dados iniciais já existem
 	exists, err := checkInitialDataExists(db)
@@ -99,9 +99,9 @@ func RunInitialData(db *sql.DB) error {
 
 	_, err = db.Exec(string(data))
 	if err != nil {
+		logs.Error("Erro ao executar dados iniciais: ", err)
 		return fmt.Errorf("failed to execute initial data: %w", err)
 	}
-	logs.Error("Erro ao executar dados iniciais: ", err)
 	return nil
 }
 

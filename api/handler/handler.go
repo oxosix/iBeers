@@ -5,12 +5,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/d90ares/iBeers/internal/app/usecase"
 	"github.com/d90ares/iBeers/internal/domain"
 	"github.com/d90ares/iBeers/pkg/errors"
 	"github.com/d90ares/iBeers/pkg/logs"
-	"github.com/d90ares/iBeers/pkg/metrics"
+	"github.com/gorilla/mux"
 )
 
 type BeerHandler struct {
@@ -24,12 +25,9 @@ func NewBeerHandler(useCase usecase.UseCase) *BeerHandler {
 }
 
 func (h *BeerHandler) GetAllBeers(w http.ResponseWriter, r *http.Request) {
-	code := http.StatusOK
 	ctx := r.Context()
 	beers, err := h.useCase.GetAllBeers(ctx)
 	if err != nil {
-		code := http.StatusInternalServerError
-		metrics.IncrementRequestCount(r.Method, "/v1/beers", code)
 		if httpErr, ok := err.(errors.HttpError); ok {
 			errors.HandleError(w, httpErr)
 			return
@@ -49,12 +47,11 @@ func (h *BeerHandler) GetAllBeers(w http.ResponseWriter, r *http.Request) {
 		errors.HandleError(w, genericErr)
 		return
 	}
-	metrics.IncrementRequestCount(r.Method, "/v1/beers", code)
+
 	// Se não houver erros, responda com JSON
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(beers)
-	// respondWithJSON(w, http.StatusOK, beers)
 }
 
 func (h *BeerHandler) Add(w http.ResponseWriter, r *http.Request) {
@@ -64,7 +61,7 @@ func (h *BeerHandler) Add(w http.ResponseWriter, r *http.Request) {
 	// Decodifique o corpo da solicitação JSON para a estrutura Beer
 	var beer domain.Beer
 	if err := json.NewDecoder(r.Body).Decode(&beer); err != nil {
-		http.Error(w, "Erro ao decodificar o corpo da solicitação", http.StatusBadRequest)
+		http.Error(w, fmt.Sprintf("Erro ao decodificar o corpo da solicitação: %v", err), http.StatusBadRequest)
 		return
 	}
 
@@ -77,7 +74,7 @@ func (h *BeerHandler) Add(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		// Se ocorrer um erro interno do servidor, retorne um erro 500
-		http.Error(w, "Erro interno do servidor", http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Erro interno do servidor: %v", err), http.StatusInternalServerError)
 		return
 	}
 
@@ -87,4 +84,31 @@ func (h *BeerHandler) Add(w http.ResponseWriter, r *http.Request) {
 	// Retorne a cerveja adicionada como resposta
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(addedBeer)
+}
+
+func (h *BeerHandler) GetByID(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	idStr := vars["id"]
+
+	id, err := strconv.ParseInt(idStr, 10, 64)
+	if err != nil {
+		http.Error(w, "ID da cerveja inválido", http.StatusBadRequest)
+		return
+	}
+	beer, err := h.useCase.GetByID(r.Context(), id)
+	if err != nil {
+		if httpErr, ok := err.(errors.HttpError); ok {
+			// Manipule o erro HttpError
+			errors.HandleError(w, httpErr)
+			return
+		}
+		// Se a cerveja não for encontrada, retorne 404
+		http.Error(w, fmt.Sprintf("Cerveja com ID %d não encontrada", id), http.StatusNotFound)
+		return
+	}
+
+	// Se tudo correr bem, retorne a cerveja como resposta
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(beer)
 }

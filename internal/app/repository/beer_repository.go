@@ -10,4 +10,5 @@ import (
 type Repository interface {
 	GetAllBeers(ctx context.Context) ([]*domain.Beer, error)
 	AddBeer(ctx context.Context, beer *domain.Beer) (*domain.Beer, error)
+	GetByID(ctx context.Context, id int64) (*domain.Beer, error)
 }
